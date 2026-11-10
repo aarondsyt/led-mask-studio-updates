@@ -1,21 +1,45 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#101018">
-<title>LED Mask Studio</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090b16"><meta name="description" content="LED Mask Studio — create, crop and send images to your LED mask.">
+<title>LED Mask Studio — Make your mask yours</title>
 <style>
-:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;background:radial-gradient(circle at 50% 0,#252044,#101018 55%);font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#f7f5ff;padding:24px}.card{width:min(100%,440px);text-align:center;background:#191824;border:1px solid #37334b;border-radius:28px;padding:32px;box-shadow:0 24px 80px #0008}.logo{width:112px;height:112px;object-fit:cover;border-radius:24px;margin:4px auto 18px}.tag{display:inline-block;padding:6px 12px;border-radius:999px;background:#29223e;color:#c7b8ff;font-size:12px;font-weight:800;letter-spacing:.12em}h1{margin:14px 0 8px;font-size:30px}p{color:#bcb8ca;line-height:1.55}.version{font-weight:700;color:#fff;margin:18px 0}.download{display:block;margin:22px 0 12px;padding:15px 20px;border-radius:14px;background:#8b5cf6;color:white;text-decoration:none;font-weight:800}.download:hover{background:#7444dc}.note{font-size:12px;color:#9994a9}footer{margin-top:24px;color:#888397;font-size:12px}
+:root{color-scheme:dark;--bg:#090b16;--panel:#121629;--muted:#a6adc6;--cyan:#36e6ff;--purple:#a78bfa;--line:#252d49}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 80% 0%,#25204b 0,transparent 38%),radial-gradient(ellipse at 0% 45%,#0c3342 0,transparent 32%),var(--bg);color:#f7f8ff;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}
+a{color:inherit;text-decoration:none}.wrap{width:min(1120px,calc(100% - 40px));margin:auto}
+nav{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff12}.brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:-.03em}.mini-logo{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#102d43,#31204f);display:grid;place-items:center;color:var(--cyan);font-size:21px}.navlinks{display:flex;gap:26px;color:var(--muted);font-size:14px}.navlinks a:hover{color:white}
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:54px;align-items:center;padding:88px 0 80px}.eyebrow{display:inline-flex;gap:8px;align-items:center;border:1px solid #8b75db66;background:#a78bfa18;color:#d9ccff;padding:7px 12px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.15em}.dot{width:7px;height:7px;background:#c4a7ff;border-radius:50%;box-shadow:0 0 12px #c4a7ff}
+h1{font-size:clamp(44px,6vw,72px);line-height:.99;letter-spacing:-.065em;margin:22px 0 20px}h1 span{background:linear-gradient(90deg,var(--cyan),#bba1ff 75%);-webkit-background-clip:text;background-clip:text;color:transparent}.lead{font-size:18px;line-height:1.7;color:var(--muted);max-width:560px}.actions{display:flex;gap:13px;flex-wrap:wrap;margin-top:30px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 20px;border-radius:13px;font-weight:800;font-size:14px;transition:.2s}.primary{background:linear-gradient(100deg,#18cce8,#8d6bff);color:#080d1c;box-shadow:0 8px 35px #4c9bff30}.primary:hover{transform:translateY(-2px);filter:brightness(1.1)}.secondary{border:1px solid var(--line);background:#ffffff08;color:#e7eaff}.subnote{font-size:12px;color:#7f89a7;margin-top:15px}
+.visual{position:relative;min-height:370px;display:grid;place-items:center}.orb{position:absolute;width:310px;height:310px;border-radius:50%;background:linear-gradient(135deg,#14d9ff22,#a66aff22);filter:blur(24px)}.mask-card{position:relative;width:min(100%,340px);padding:28px;border-radius:30px;border:1px solid #ffffff24;background:linear-gradient(145deg,#1b2440dd,#101323ee);box-shadow:0 30px 90px #0009;transform:rotate(3deg)}.mask-icon{width:100%;display:block;filter:drop-shadow(0 0 25px #23dfff55)}.visual-caption{text-align:center;color:#b9c4e0;font-size:12px;letter-spacing:.14em;margin-top:16px}
+.section{padding:42px 0 78px}.section-head{text-align:center;margin:0 auto 32px;max-width:620px}.section-head h2{font-size:32px;letter-spacing:-.04em;margin:0 0 10px}.section-head p{color:var(--muted);line-height:1.6;margin:0}.features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.feature{padding:24px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(145deg,#151b30,#101423)}.feature .ico{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:#27dfff14;color:var(--cyan);font-size:20px}.feature h3{margin:18px 0 8px;font-size:17px}.feature p{margin:0;color:var(--muted);font-size:14px;line-height:1.65}
+.install{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:center;padding:32px;border:1px solid var(--line);border-radius:24px;background:#111729}.install h2{font-size:28px;letter-spacing:-.04em;margin:0 0 10px}.install p{color:var(--muted);line-height:1.65}.steps{display:grid;gap:12px}.step{display:flex;gap:13px;align-items:flex-start;color:#dfe4f7;font-size:14px;line-height:1.5}.num{flex:0 0 27px;height:27px;border-radius:9px;background:#a78bfa22;color:#d0bfff;display:grid;place-items:center;font-weight:800}
+footer{border-top:1px solid #ffffff12;padding:26px 0 38px;color:#7f89a7;font-size:12px;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+@media(max-width:760px){.hero{grid-template-columns:1fr;padding:62px 0 45px;gap:15px}.visual{min-height:290px}.mask-card{width:260px}.features{grid-template-columns:1fr}.install{grid-template-columns:1fr;padding:24px}.navlinks{gap:14px}.navlinks a:first-child{display:none}}
 </style>
 </head>
-<body><main class="card">
-<svg class="logo" viewBox="0 0 108 108" role="img" aria-label="Neon LED mask icon"><rect width="108" height="108" rx="22" fill="#050611"/><path d="M16 27Q54 8 92 27L89 69Q82 93 54 99Q26 93 19 69Z" fill="#101426" stroke="#152D55" stroke-width="1.5"/><path d="M16 27Q14 50 19 69Q27 88 54 99M92 27Q94 50 89 69Q81 88 54 99" fill="none" stroke="#00D9FF" stroke-width="2.8" stroke-linecap="round"/><path d="M27 39l5-5 8 8 8-8 5 5-8 8 8 8-5 5-8-8-8 8-5-5 8-8z" fill="#00DFFF"/><path d="M55 39l5-5 8 8 8-8 5 5-8 8 8 8-5 5-8-8-8 8-5-5 8-8z" fill="#D936FF"/><path d="M28 70h5v8h-5zM37 75h5v7h-5zM46 79h5v7h-5zM55 81h5v7h-5z" fill="#00DFFF"/><path d="M64 79h5v7h-5zM73 75h5v7h-5zM82 70h5v8h-5z" fill="#D936FF"/></svg>
-<span class="tag">BETA</span>
-<h1>LED Mask Studio</h1>
-<p>Control your LED mask over Bluetooth. Load images, crop them, save your favourites and send them to your mask.</p>
-<div class="version">Latest release · v1.2</div>
-<a class="download" href="https://github.com/aarondsyt/led-mask-studio-updates/releases/latest/download/LED-Mask-Studio.apk">Download APK</a>
-<p class="note">Android may ask you to allow installs from your browser. You must approve installation on your device.</p>
-<footer>LED Mask Studio · BETA</footer>
-</main></body></html>
+<body>
+<div class="wrap">
+<nav><a class="brand" href="#"><span class="mini-logo">◈</span> LED MASK STUDIO</a><div class="navlinks"><a href="#features">Features</a><a href="#install">Install</a><a href="https://github.com/aarondsyt/led-mask-studio-updates/releases">Releases ↗</a></div></nav>
+<main>
+<section class="hero">
+<div><div class="eyebrow"><span class="dot"></span> ANDROID APP · BETA <span id="version">· v1.2</span></div>
+<h1>Your mask.<br><span>Your style.</span></h1>
+<p class="lead">Create your look, crop your favourite images, and send them straight to your LED mask over Bluetooth. All from your phone.</p>
+<div class="actions"><a class="btn primary" id="download" href="https://github.com/aarondsyt/led-mask-studio-updates/releases/latest/download/LED-Mask-Studio.apk">↓ &nbsp; Download APK</a><a class="btn secondary" href="#features">Explore features&nbsp; ↓</a></div>
+<div class="subnote">Free beta · Android · Manual install required</div></div>
+<div class="visual"><div class="orb"></div><div class="mask-card">
+<svg class="mask-icon" viewBox="0 0 108 108" role="img" aria-label="Neon LED mask icon"><rect width="108" height="108" rx="22" fill="#050611"/><path d="M16 27Q54 8 92 27L89 69Q82 93 54 99Q26 93 19 69Z" fill="#101426" stroke="#152D55" stroke-width="1.5"/><path d="M16 27Q14 50 19 69Q27 88 54 99M92 27Q94 50 89 69Q81 88 54 99" fill="none" stroke="#00D9FF" stroke-width="2.8" stroke-linecap="round"/><path d="M27 39l5-5 8 8 8-8 5 5-8 8 8 8-5 5-8-8-8 8-5-5 8-8z" fill="#00DFFF"/><path d="M55 39l5-5 8 8 8-8 5 5-8 8 8 8-5 5-8-8-8 8-5-5 8-8z" fill="#D936FF"/><path d="M28 70h5v8h-5zM37 75h5v7h-5zM46 79h5v7h-5zM55 81h5v7h-5z" fill="#00DFFF"/><path d="M64 79h5v7h-5zM73 75h5v7h-5zM82 70h5v8h-5z" fill="#D936FF"/></svg><div class="visual-caption">LIGHT UP YOUR LOOK</div></div></div>
+</section>
+<section class="section" id="features"><div class="section-head"><h2>Made for your mask</h2><p>Everything you need to make custom visuals and get them onto your LED mask.</p></div>
+<div class="features"><article class="feature"><div class="ico">▧</div><h3>Custom images</h3><p>Pick an image from your phone and automatically center it for the mask display.</p></article><article class="feature"><div class="ico">⌗</div><h3>Crop & save</h3><p>Fine-tune your crop in the app and save favourites to reuse whenever you want.</p></article><article class="feature"><div class="ico">⌁</div><h3>Bluetooth sending</h3><p>Connect to your LED mask and send your chosen design directly from your phone.</p></article></div>
+</section>
+<section class="section" id="install"><div class="install"><div><div class="eyebrow">GET STARTED</div><h2>Ready to light up?</h2><p>Download the Android APK and install it on your phone. Since this is a beta app, Android may ask you to approve installation from your browser.</p><a class="btn primary" href="https://github.com/aarondsyt/led-mask-studio-updates/releases/latest/download/LED-Mask-Studio.apk">↓ &nbsp; Get LED Mask Studio</a></div>
+<div class="steps"><div class="step"><span class="num">1</span><span>Download the APK to your Android phone.</span></div><div class="step"><span class="num">2</span><span>Open the downloaded file. Allow installs from this source if Android asks.</span></div><div class="step"><span class="num">3</span><span>Tap Install and open LED Mask Studio.</span></div><div class="step"><span class="num">!</span><span>To update an existing install, the APK must be signed with the same key. Don't uninstall if you need to keep saved images.</span></div></div></div></section>
+</main>
+<footer><span>© LED Mask Studio · BETA</span><span>Built for LED mask creators · <a href="https://github.com/aarondsyt/led-mask-studio-updates/releases">All releases ↗</a></span></footer>
+</div>
+<script>
+fetch('latest.json').then(r=>r.json()).then(d=>{if(d.versionName)document.getElementById('version').textContent='· v'+d.versionName;if(d.apkUrl)document.getElementById('download').href=d.apkUrl}).catch(()=>{});
+</script>
+</body></html>
